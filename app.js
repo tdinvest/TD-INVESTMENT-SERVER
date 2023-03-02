@@ -99,7 +99,18 @@ app.use(cors({
 //     console.error(error);
 //   });
 
-
+app.use( async(req, res, next) => {
+  res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'Content-Length'
+  )
+  next();
+});
 
 app.use(bodyParser.urlencoded({extended: true})); // x-www-form-urlencoded <form>
 app.use(bodyParser.json()); // application/json
@@ -116,18 +127,7 @@ app.use(bodyParser.json()); // application/json
 
 
 
-app.use( async(req, res, next) => {
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  // another common pattern
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Content-Length'
-  )
-  next();
-});
+
 
 
 app.use('/feed', feedRoutes);

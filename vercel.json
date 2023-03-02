@@ -1,32 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "./app.js",
-        "use": "@vercel/node"
-      }
-    ],
-    "rewrites": [
-      { "source": "/(.*)", "destination": "src/app.js" }
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@now/node"
+    }
   ],
-    "headers": [
-      {
-        "source": "/(.*)",
-        "headers": [
-          {
-            "source": "/(.*)",
-            "headers": [
-              { "key": "Access-Control-Allow-Origin", "value": "*" }
-            ]
-          },
-          {
-            "source": "/td-alpha.vercel.app/(.*)",
-            "headers": [
-              { "key": "Access-Control-Allow-Origin", "value": "*" }
-            ]
-          }  
-      ]
-      }
-    ]
-  }
-  
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "app.js"
+    }
+  ]
+}
