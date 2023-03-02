@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const SibApiV3Sdk = require('sib-api-v3-sdk');
 const nodemailer = require("nodemailer");
 const helmet = require('helmet');
 
