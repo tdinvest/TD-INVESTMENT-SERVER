@@ -104,6 +104,10 @@ app.use(bodyParser.json()); // application/json
 // app.use('/images', express.static(path.join(__dirname, 'images')));
 
 
+// app.use(cors({
+//   origin: 'http://localhost:3000',
+//   methods: ['GET,OPTIONS,PATCH,DELETE,POST,PUT']
+// }));
 app.use(cors({
   origin: 'http://localhost:3000',
   methods: ['GET,OPTIONS,PATCH,DELETE,POST,PUT']
