@@ -12,6 +12,11 @@ const verifyRoutes = require('./routes/verify');
 
 const app = express();
 
+app.use(cors({
+  origin: '*',
+  methods: ['GET,OPTIONS,PATCH,DELETE,POST,PUT']
+}));
+
 // const fileStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
 //     cb(null, 'images');
@@ -108,10 +113,7 @@ app.use(bodyParser.json()); // application/json
 //   origin: 'http://localhost:3000',
 //   methods: ['GET,OPTIONS,PATCH,DELETE,POST,PUT']
 // }));
-app.use(cors({
-  origin: 'http://localhost:3000',
-  methods: ['GET,OPTIONS,PATCH,DELETE,POST,PUT']
-}));
+
 
 
 app.use( async(req, res, next) => {
