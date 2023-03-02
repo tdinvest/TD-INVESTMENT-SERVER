@@ -108,7 +108,12 @@ app.use( async(req, res, next) => {
   res.setHeader(
     'Access-Control-Allow-Headers',
     'Content-Length'
-  )
+  );
+  if(req.method === 'OPTIONS') {
+    return res.status(200).json(({
+        body: "OK"
+    }))
+}
   next();
 });
 
