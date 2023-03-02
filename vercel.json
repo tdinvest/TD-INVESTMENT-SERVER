@@ -6,10 +6,26 @@
         "use": "@vercel/node"
       }
     ],
-    "routes": [
+    "rewrites": [
+      { "source": "/(.*)", "destination": "src/app.js" }
+  ],
+    "headers": [
       {
-        "src": "/(.*)",
-        "dest": "/"
+        "source": "/(.*)",
+        "headers": [
+          {
+            "source": "/(.*)",
+            "headers": [
+              { "key": "Access-Control-Allow-Origin", "value": "*" }
+            ]
+          },
+          {
+            "source": "/td-alpha.vercel.app/(.*)",
+            "headers": [
+              { "key": "Access-Control-Allow-Origin", "value": "*" }
+            ]
+          }  
+      ]
       }
     ]
   }
