@@ -94,9 +94,6 @@ const app = express();
 //     console.error(error);
 //   });
 
-app.use(cors({
-  origin: 'http://localhost:3000',
-}));
 
 
 app.use(bodyParser.urlencoded({extended: true})); // x-www-form-urlencoded <form>
@@ -125,6 +122,10 @@ res.setHeader('Access-Control-Allow-Credentials', true);
   }
   next();
 });
+
+app.use(cors({
+  origin: 'http://localhost:3000',
+}));
 
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
