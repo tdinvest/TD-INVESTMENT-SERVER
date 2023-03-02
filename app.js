@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const nodemailer = require("nodemailer");
 const helmet = require('helmet');
+const cors = require('cors');
 
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
@@ -92,6 +93,10 @@ const app = express();
 //   }, function(error) {
 //     console.error(error);
 //   });
+
+app.use(cors({
+  origin: '*',
+}));
 
 
 app.use(bodyParser.urlencoded({extended: true})); // x-www-form-urlencoded <form>
