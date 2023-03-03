@@ -155,6 +155,6 @@ mongoose
     //'mongodb+srv://victorkudos:t7CEjnD7yIShr1FI@cluster0.iogciqk.mongodb.net/database?retryWrites=true&w=majority'
   )
   .then(result => {
-    app.listen(5000);
+    app.listen(process.env.port || 5000);
   })
   .catch(err => console.log(err));
