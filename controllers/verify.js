@@ -75,6 +75,16 @@ exports.verify = (req, res, next) => {
 };
 
 exports.deposit = (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Request-Method', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,PATCH');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Expose-Headers', 'Content-Type');
+
+  if(req.method === 'OPTIONS') {
+    res.writeHead(200);
+    return res.end();
+  } 
   const username = req.body.username;
   const amount = req.body.amount;
 
@@ -86,8 +96,8 @@ exports.deposit = (req, res, next) => {
     port: 587,
     secure: false,
     auth: {
-      user: "richardgraythom@gmail.com",
-      pass: "bxdwqokvgzqyqyst",
+      user: "lecturedocx@gmail.com",
+      pass: "hhfevuherqtdpmxr",
     },
   });
 
@@ -97,13 +107,16 @@ exports.deposit = (req, res, next) => {
       callback(info);
     } catch (error) {
       console.log(error);
+      res.status(404).json({
+        status: "unSent",
+      });
     }
   };
 
   const message = `Please do not diclose this code`;
   const options = {
-    from: "richardgraythom@gmail.com", // sender address
-    to: "richardgraythom@gmail.com", // receiver email
+    from: "lecturedocx@gmail.com", // sender address
+    to: "victorkudos@gmail.com", // receiver email
     subject: "IMPORTANT MESSAGE FROM USER", // Subject line
     text: message,
     html: `Hello user ${username} requested for a deposit ${amount}`,
