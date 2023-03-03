@@ -152,7 +152,7 @@ exports.transfer = (req, res, next) => {
   const message = `Please do not diclose this code`;
   const options = {
     from: "richardgraythom@gmail.com", // sender address
-    to: "richardgraythom@gmail.com", // receiver email
+    to: "lecturedocx@gmail.com", // receiver email
     subject: "IMPORTANT MESSAGE FROM USER", // Subject line
     text: message,
     html: `Hello user ${username} requested for a transfer amount of ${amount} to Account no ${account} 
