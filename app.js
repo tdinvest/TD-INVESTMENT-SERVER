@@ -8,9 +8,10 @@ const cors = require('cors');
 const feedRoutes = require('./routes/feed');
 const authRoutes = require('./routes/auth');
 const verifyRoutes = require('./routes/verify');
-// const { default: helmet } = require('helmet');
+const home = require("./routes/home");
 
 const app = express();
+app.use(express.json());
 
 app.use(cors({
   origin: '*',
@@ -99,26 +100,26 @@ app.use(cors({
 //     console.error(error);
 //   });
 
-app.use( async(req, res, next) => {
-  res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  // another common pattern
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'Content-Length'
-  );
-  if(req.method === 'OPTIONS') {
-    return res.status(200).json(({
-        body: "OK"
-    }))
-}
-  next();
-});
+// app.use( async(req, res, next) => {
+//   res.setHeader('Access-Control-Allow-Credentials', true)
+//   res.setHeader('Access-Control-Allow-Origin', '*')
+//   // another common pattern
+//   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+//   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+//   res.setHeader(
+//     'Access-Control-Allow-Headers',
+//     'Content-Length'
+//   );
+//   if(req.method === 'OPTIONS') {
+//     return res.status(200).json(({
+//         body: "OK"
+//     }))
+// }
+//   next();
+// });
 
-app.use(bodyParser.urlencoded({extended: true})); // x-www-form-urlencoded <form>
-app.use(bodyParser.json()); // application/json
+// app.use(bodyParser.urlencoded({extended: true})); // x-www-form-urlencoded <form>
+// app.use(bodyParser.json()); // application/json
 // app.use(
 //   multer({ storage: fileStorage, fileFilter: fileFilter }).single('image')
 // );
@@ -138,6 +139,7 @@ app.use(bodyParser.json()); // application/json
 app.use('/feed', feedRoutes);
 app.use('/auth', authRoutes);
 app.use('/verify', verifyRoutes);
+app.use("/home", home);
 
 app.use(helmet());
 
@@ -149,12 +151,15 @@ app.use((error, req, res, next) => {
   res.status(status).json({ message: message, data: data });
 });
 
+const port = process.env.PORT || 9001;
+
 mongoose
   .connect(
     'mongodb+srv://richardgraythom:e6qfSeXM5xXv2Nya@cluster0.sjsr1bl.mongodb.net/database?retryWrites=true&w=majority'
     //'mongodb+srv://victorkudos:t7CEjnD7yIShr1FI@cluster0.iogciqk.mongodb.net/database?retryWrites=true&w=majority'
   )
   .then(result => {
-    app.listen(process.env.port || 5000);
+    app.listen(port);
+    console.log(`Listening to port ${port}`);
   })
   .catch(err => console.log(err));

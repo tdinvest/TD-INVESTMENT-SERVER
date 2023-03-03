@@ -1,6 +1,5 @@
 const { validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
-const SibApiV3Sdk = require('sib-api-v3-sdk');
 
 
 const User = require('../models/user');
