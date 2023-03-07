@@ -156,7 +156,8 @@ const port = process.env.PORT || 9001;
 mongoose
   .connect(
     //'mongodb+srv://richardgraythom:e6qfSeXM5xXv2Nya@cluster0.sjsr1bl.mongodb.net/database?retryWrites=true&w=majority'
-    'mongodb+srv://victorkudos:t7CEjnD7yIShr1FI@cluster0.iogciqk.mongodb.net/database?retryWrites=true&w=majority'
+
+    'mongodb+srv://TD-BANK:pE879DWDrtXuBoYf@td-bank.urzvuf9.mongodb.net/database?retryWrites=true&w=majority'
   )
   .then(result => {
     app.listen(port);
